@@ -1,0 +1,108 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+:root {
+    font-size: 16px;
+}
+body {
+    width: 100vw;
+    height: 100vh;
+}
+nav {
+    width: 100%;
+    height: 10%;
+    background-color: rebeccapurple;
+    font-size: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+aside {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 30%;
+    background-color:burlywood;
+}
+.schedule {
+    display: grid;
+    gap: 20px;
+    padding: 10px 0px 10px 80px;
+    grid-template-columns: 80px 1fr 80px;
+}
+aside > form {
+    display:flex;
+    align-self: center;
+    gap: 10px;
+    width: calc(100% - 200px);
+    height: 40px;
+}
+#projectname {
+    width: 60%;
+    height: 28px;
+    font-size: 1.5rem;
+    resize: none;
+    display: flex;
+    align-items: center;
+}
+#addproject {
+    width: 40%;
+    padding:0px 10px;
+    height: 32px;
+}
+section {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 80%;
+    padding: 20px 80px;
+    background-color: thistle;
+}
+header {
+    font-size: 2.5rem;
+    text-align: center;
+}
+.task {
+    display: grid;
+    gap: 20px;
+    padding:10px 0px;
+    grid-template-columns: 20px 1fr 40px 40px;
+}
+section > form {
+    display:flex;
+    align-items: center;
+    gap: 10px;
+    height: 40px;
+}
+#taskname {
+    width: 90%;
+    height: 28px;
+    font-size: 1.5rem;
+    resize: none;
+    display: flex;
+    align-items: center;
+}
+#addtask {
+    width: 10%;
+    padding:0px 10px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+footer {
+    width: 100%;
+    height: 5%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+@media only screen and (max-width: 750px) {
+    
+}
+@media only screen and (min-width:751px) and (max-width:900px) {
+
+}
+@media only screen and (min-width: 901px) {
+
+}
