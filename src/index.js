@@ -1,33 +1,27 @@
 import './style.css';
-import { TaskElement } from './task';
+import { ProjectElement } from './project';
 
-const taskInput = document.getElementById('taskname');
-const dateInput = document.getElementById('date');
-let taskname;
-let date;
-taskInput.addEventListener('change',() => {
-    taskname = taskInput.value;
-});
-dateInput.addEventListener('change',() => {
-    date = dateInput.value;
-});
+const projectInput = document.getElementById('projectname');
+let projectname;
 
-const addtask = document.getElementById('addtask');
-const taskform = document.getElementById('taskform');
+projectInput.addEventListener('change',() => {
+    projectname = projectInput.value;
+})
 
-const tasks = document.getElementById('tasks');
+const projects = document.getElementById('projects');
 
-taskform.addEventListener('submit', (e) => {
+const projectform = document.getElementById('projectform');
+projectform.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    if (taskform.checkValidity()) {
-        date = date.split('-').reverse().join('/');
-        const task = new TaskElement(taskname,date);
-        const taskDiv = task.task();
-        tasks.appendChild(taskDiv);
+    if(projectform.checkValidity()) {
+        const project = new ProjectElement(projectname);
+        const projectDiv = project.project();
+
+        projects.appendChild(projectDiv);
     }
     else {
-        taskform.reportValidity();
+        projectform.reportValidity();
     }
 });
 
