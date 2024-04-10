@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
 }
+
 :root {
     font-size: 16px;
 }
@@ -24,18 +25,24 @@ aside {
     width: 100%;
     min-height: 30%;
     background-color:burlywood;
+    box-sizing: border-box;
+    padding: 0px 40px 0px 40px;
 }
 .schedule {
     display: grid;
     gap: 20px;
-    padding: 10px 0px 10px 80px;
-    grid-template-columns: 80px 1fr 80px;
+    padding: 10px 0px;
+    grid-template-columns: 1fr 4fr 1fr;
+}
+.schedule > span:last-child {
+    display: flex;
+    justify-content: right;
 }
 aside > form {
     display:flex;
     align-self: center;
     gap: 10px;
-    width: calc(100% - 200px);
+    width: 80%;
     height: 40px;
 }
 #projectname {
@@ -57,7 +64,7 @@ section {
     width: 100%;
     box-sizing: border-box;
     min-height: 80%;
-    padding: 20px 80px;
+    padding: 10px 40px;
     background-color: thistle;
 }
 header {
@@ -66,41 +73,61 @@ header {
 }
 .task {
     display: grid;
-    gap: 20px;
-    padding:10px 0px;
-    grid-template-columns: 20px 1fr 40px 40px;
+    align-items: center;
+    gap: 5px;
+    height: 30px;
+    margin:10px 0px;
+    grid-template-columns: 1fr 8fr 3fr 2fr 2fr;
 }
-section > form {
-    display:flex;
+.task > input:first-child {
+    justify-self: left;
+}
+section > div > form {
+    display:grid;
+    grid-template-columns: 8fr 98px 1fr;
     align-items: center;
     gap: 10px;
     height: 40px;
 }
 #taskname {
-    width: 90%;
     height: 28px;
+    min-width: 0;
     font-size: 1.5rem;
     resize: none;
     display: flex;
     align-items: center;
 }
+#date {
+    height: 28px;
+    min-width: 98px;
+    font-size: 0.75rem;
+}
 #addtask {
-    width: 10%;
     padding:0px 10px;
+    min-width: 0;
     height: 32px;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.dateedit {
+    min-width: 80px;
+    min-height: 16px;
+    font-size: clamp(0.6rem,2vw,2vh);
+}
+.taskedit {
+    width: 80%;
+    font-size: clamp(1rem,2vw,2vh);
 }
 footer {
     width: 100%;
     height: 5%;
     background-color: rgba(0, 0, 0, 0.8);
 }
-@media only screen and (max-width: 750px) {
-    
+@media only screen and (max-width: 600px) {
+    /* 600 e kadar section padding 10px 40px ondan sonra tablet modunda 40px 80px */
 }
-@media only screen and (min-width:751px) and (max-width:900px) {
+@media only screen and (min-width:601px) and (max-width:900px) {
 
 }
 @media only screen and (min-width: 901px) {

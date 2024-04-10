@@ -28,22 +28,16 @@
         </div>
     </aside>
     <section>
-        <header>YOUR PROJECT</header>
         <div>
-            <div class="task">
-                <input type="checkbox"> <div>Example Task</div> <button>|</button> <button>x</button>
+            <header>YOUR PROJECT</header>
+            <div id="tasks">
             </div>
-            <div class="task">
-                <input type="checkbox"> <div>Example Task</div> <button>|</button> <button>x</button>
-            </div>
-            <div class="task">
-                <input type="checkbox"> <div>Example Task</div> <button>|</button> <button>x</button>
-            </div>
+            <form id="taskform">
+                <input type="text" id="taskname" placeholder="Task Name" required>
+                <input type="date" id="date" max="2100-12-31" min="1997-12-31" required>
+                <button id="addtask">Add</button>
+            </form>
         </div>
-        <form>
-            <input type="text" id="taskname">
-            <button id="addtask">Add</button>
-        </form>
     </section>
     <footer></footer>
 </body>
