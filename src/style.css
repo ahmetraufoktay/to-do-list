@@ -38,9 +38,13 @@ aside {
 }
 .project {
     grid-template-columns: 2fr 7fr 0.5fr 1.25fr 1.25fr;
+    z-index: 1;
 }
 .projectedit {
     width: 80%;
+}
+.projectremove {
+    z-index: 2;
 }
 .schedule > span:last-child {
     display: flex;

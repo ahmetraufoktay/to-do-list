@@ -53,9 +53,16 @@ class ProjectElement {
 
         edit.addEventListener('click',()=> {
             if (isEditing) {
+                let oldname = this.nameelement.innerHTML;
+                
                 this.nameelement = document.createElement('div');
                 this.nameelement.innerHTML = `${this.name}`;
-    
+                
+                const projectDataString = localStorage.getItem(`${oldname}`);        
+
+                localStorage.removeItem(`${oldname}`);
+                localStorage.setItem(`${this.name}`,projectDataString);
+
                 this.projectelement.replaceChild(this.nameelement,projectinput);
                 isEditing = false;
             } else {
@@ -69,9 +76,15 @@ class ProjectElement {
     remove() {
         const remove = document.createElement('button');
         remove.innerHTML = 'x';
-        remove.addEventListener('click',() => {
+        remove.className = 'projectremove';
+        remove.addEventListener('click',(event) => {
             const projects = document.getElementById('projects');
+            const section = document.querySelector('section');
             projects.removeChild(this.projectelement);
+            section.innerHTML = '';
+            
+            localStorage.removeItem(this.name);
+            event.stopPropagation();
         })
         return remove;
     }
@@ -79,7 +92,6 @@ class ProjectElement {
         const container = document.createElement('div');
         
         const header = document.createElement('header');
-        console.log(this.name);
         header.innerHTML = `${this.name}`;
 
         const tasks = document.createElement('div');
@@ -118,13 +130,38 @@ class ProjectElement {
         taskform.appendChild(dateInput);
         taskform.appendChild(addtask);
 
+
+        const projectDataString = localStorage.getItem(`${this.name}`);
+        const projectData = JSON.parse(projectDataString);
+
+        for (const task of projectData) {
+            const taskName = task.name;
+            const taskDate = task.date;
+            const taskCheck = task.checked;
+
+            const taskElement = new TaskElement(taskName,taskDate,taskCheck,this.name);
+            const taskDiv = taskElement.task();
+            tasks.appendChild(taskDiv);
+        }
+
         taskform.addEventListener('submit', (e) => {
             e.preventDefault();
-        
+            
             if (taskform.checkValidity()) {
-                date = date.split('-').reverse().join('/');
-                const task = new TaskElement(taskname,date);
-                const taskDiv = task.task();
+                let taskdate = date.split('-').reverse().join('/');
+                
+                const newTask = {
+                    name: taskname,
+                    date: taskdate,
+                    checked: false
+                }
+                projectData.push(newTask);
+
+                const updatedProjectDataString = JSON.stringify(projectData);
+                localStorage.setItem(`${this.name}`,updatedProjectDataString);
+
+                const taskElement = new TaskElement(taskname, taskdate, false, this.name);
+                const taskDiv = taskElement.task();
                 tasks.appendChild(taskDiv);
             }
             else {

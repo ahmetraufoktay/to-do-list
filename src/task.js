@@ -1,8 +1,9 @@
 class TaskElement {
-    constructor(name,date) {
+    constructor(name,date,checked=false,parent) {
         this.name = name;
         this.date = date;
-        this.checked  = false;
+        this.checked = checked;
+        this.parent = parent;
         this.nameelement = null;
         this.dateelement = null;
         this.taskelement = null;
@@ -23,8 +24,18 @@ class TaskElement {
     checkbox() {
         const checkBox = document.createElement('input');
         checkBox.type = 'checkbox';
+
+        const projectDataString = localStorage.getItem(`${this.parent}`);
+        const projectData = JSON.parse(projectDataString);
+        const item = projectData.find((element) => element.name == this.name);
+        
+        checkBox.checked = item['checked'];
         checkBox.addEventListener('click',()=>{
             this.checked = !this.checked;
+
+            item['checked'] = this.checked;
+            const updatedProjectDataString = JSON.stringify(projectData);
+            localStorage.setItem(`${this.parent}`,updatedProjectDataString);
         })
         return checkBox;
     }
@@ -47,6 +58,7 @@ class TaskElement {
         const dateinput = document.createElement('input');
         dateinput.type = 'date';
         dateinput.className = 'dateedit';
+        dateinput.required = true;
         dateinput.addEventListener('change',() => {
             this.date = dateinput.value;
         })
@@ -54,10 +66,12 @@ class TaskElement {
         const taskinput = document.createElement('input');
         taskinput.type = 'text';
         taskinput.className = 'taskedit';
+        taskinput.required = true;
         taskinput.addEventListener('change',() => {
             this.name = taskinput.value;
-        })
+        });
 
+        let oldname;
         edit.addEventListener('click',()=> {
             if (isEditing) {
                 this.dateelement = document.createElement('div');
@@ -68,8 +82,18 @@ class TaskElement {
     
                 this.taskelement.replaceChild(this.dateelement,dateinput);
                 this.taskelement.replaceChild(this.nameelement,taskinput);
+                
+                const projectDataString = localStorage.getItem(`${this.parent}`);
+                const projectData = JSON.parse(projectDataString);
+                const item = projectData.find((element) => element.name == oldname);
+                item['name'] = `${this.name}`;
+                item['date'] = `${this.date.split('-').reverse().join('/')}`;
+                const updatedProjectDataString = JSON.stringify(projectData);
+                localStorage.setItem(`${this.parent}`,updatedProjectDataString);
+
                 isEditing = false;
             } else {
+                oldname = this.name;
                 this.taskelement.replaceChild(dateinput,this.dateelement);
                 this.taskelement.replaceChild(taskinput,this.nameelement);
                 isEditing = true;
@@ -84,6 +108,13 @@ class TaskElement {
         remove.addEventListener('click',() => {
             const tasks = document.getElementById('tasks');
             tasks.removeChild(this.taskelement);
+
+            const projectDataString = localStorage.getItem(`${this.parent}`);
+            const projectData = JSON.parse(projectDataString);
+            const item = projectData.find((element) => element.name == this.name);
+            projectData.pop(item);
+            const updatedProjectDataString = JSON.stringify(projectData);
+            localStorage.setItem(`${this.parent}`,updatedProjectDataString);
         })
         return remove;
     }
