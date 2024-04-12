@@ -16,7 +16,6 @@ class ProjectElement {
         this.projectname();
         project.appendChild(this.nameelement);
         
-        project.appendChild(this.count());
         project.appendChild(this.edit());
         project.appendChild(this.remove());
         this.projectelement = project;
@@ -25,7 +24,7 @@ class ProjectElement {
     }
     logo() {
         const logo = document.createElement('span');
-        logo.innerHTML = 'logo';
+        logo.classList = 'logo projectlogo';
         return logo;
     }
     projectname() {
@@ -33,14 +32,9 @@ class ProjectElement {
         name.innerHTML = this.name;
         this.nameelement = name;
     }
-    count() {
-        const number = document.createElement('span');
-        number.innerHTML = '0';
-        return number;
-    }
     edit() {
         const edit = document.createElement('button');
-        edit.innerHTML = '|';
+        edit.classList = 'logo projecteditnormal';
 
         let isEditing = false;
 
@@ -69,14 +63,13 @@ class ProjectElement {
                 this.projectelement.replaceChild(projectinput,this.nameelement);
                 isEditing = true;
             }
-            edit.innerHTML = isEditing ? '+' : '|';
+            edit.classList = isEditing ? "logo projecteditadd" : 'logo projecteditnormal';
         })
         return edit;
     }
     remove() {
         const remove = document.createElement('button');
-        remove.innerHTML = 'x';
-        remove.className = 'projectremove';
+        remove.className = 'logo projectremove';
         remove.addEventListener('click',(event) => {
             const projects = document.getElementById('projects');
             const section = document.querySelector('section');
@@ -123,7 +116,7 @@ class ProjectElement {
         });
 
         const addtask = document.createElement('button');
-        addtask.id = addtask;
+        addtask.id = 'addtask';
         addtask.innerHTML = 'Add';
         
         taskform.appendChild(taskInput);

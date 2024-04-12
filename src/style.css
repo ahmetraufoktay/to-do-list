@@ -1,20 +1,31 @@
+@font-face {
+    font-family: "NotesHeader";
+    src: url('./fonts/Notes\ School.ttf');
+}
+@font-face {
+    font-family: "NoteFont";
+    src: url('./fonts/Notebook.ttf');
+}
 * {
     margin: 0;
     padding: 0;
 }
-
 :root {
     font-size: 16px;
+    font-family: "NoteFont";
 }
 body {
     width: 100vw;
     height: 100vh;
+    overflow-x: hidden;
 }
 nav {
     width: 100%;
-    height: 10%;
     background-color: rebeccapurple;
     font-size: 3rem;
+    font-family: "NotesHeader";
+    font-weight: bolder;
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,62 +33,58 @@ nav {
 aside {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    min-height: 30%;
-    background-color:burlywood;
+    background-color:rgb(191, 191, 216);
     box-sizing: border-box;
-    padding: 0px 40px 0px 40px;
 }
 .schedule,.project {
     display: grid;
+    align-items: center;
+    font-weight: lighter;
     gap: 10px;
-    padding: 10px 0px;
+    height: 40px;
+    font-size: 2rem;
 }
-.schedule {
-    grid-template-columns: 1fr 4fr 1fr;
-}
-.project {
-    grid-template-columns: 2fr 7fr 0.5fr 1.25fr 1.25fr;
-    z-index: 1;
-}
-.projectedit {
-    width: 80%;
-}
-.projectremove {
-    z-index: 2;
-}
-.schedule > span:last-child {
-    display: flex;
-    justify-content: right;
-}
-aside > form {
+#projectform {
     display:flex;
     align-self: center;
     gap: 10px;
-    width: 80%;
+
     height: 40px;
 }
+/* add project  */
 #projectname {
-    width: 60%;
-    height: 28px;
+    width: 100%;
+    height: 35px;
+    padding: 0px 10px;
+    box-sizing: border-box;
     font-size: 1.5rem;
     resize: none;
     display: flex;
     align-items: center;
+    border-style: none;
+    border-radius: 10px;
 }
 #addproject {
     width: 40%;
     padding:0px 10px;
-    height: 32px;
+    height: 35px;
+    border: 2px white solid;
+    border-radius: 10px;
+    background-color: green;
+    font-family: "NotesHeader";
+    font-size: 1.5rem;
+    color: white;
 }
+#addproject:active {
+    transition: 0.3s;
+    transform: scale(95%);
+}
+/*  */
 section {
     display: flex;
     flex-direction: column;
-    width: 100%;
     box-sizing: border-box;
-    min-height: 80%;
-    padding: 10px 40px;
-    background-color: thistle;
+    background-color: rgb(191, 216, 202);
 }
 header {
     font-size: 2.5rem;
@@ -89,10 +96,10 @@ header {
     gap: 5px;
     height: 30px;
     margin:10px 0px;
-    grid-template-columns: 1fr 8fr 3fr 2fr 2fr;
 }
-.task > input:first-child {
-    justify-self: left;
+.task > div:last-of-type {
+    justify-self: right;
+    align-self: self-end;
 }
 section > div > form {
     display:grid;
@@ -103,6 +110,8 @@ section > div > form {
 }
 #taskname {
     height: 28px;
+    box-sizing: border-box;
+    padding: 0px 5px;
     min-width: 0;
     font-size: 1.5rem;
     resize: none;
@@ -113,6 +122,12 @@ section > div > form {
     height: 28px;
     min-width: 98px;
     font-size: 0.75rem;
+    border-radius: 5px;
+    border: 1px solid rgb(75, 74, 74);
+}
+.dateedit {
+    border-radius: 5px;
+    border: 1px solid rgb(75, 74, 74);
 }
 #addtask {
     padding:0px 10px;
@@ -121,6 +136,15 @@ section > div > form {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: green;
+    border-radius: 10px;
+    font-family: "NotesHeader";
+    border: 2px solid white;
+    color: white;
+}
+#addtask:active {
+    transition: 0.3s;
+    transform: scale(90%);
 }
 .dateedit {
     min-width: 80px;
@@ -133,15 +157,176 @@ section > div > form {
 }
 footer {
     width: 100%;
-    height: 5%;
     background-color: rgba(0, 0, 0, 0.8);
 }
+/* logo backgrounds */
+.logo {
+    width:30px;
+    height:30px;
+}
+.today {
+    background:url(./img/today.svg);
+    background-size: cover;
+}
+.tomorrow {
+    background: url(./img/tomorrow.svg);
+    background-size: cover;
+}
+.thisweek {
+    background: url(./img/week.svg);
+    background-size: cover;
+}
+.upcoming {
+    background: url(./img/upcoming.svg);
+    background-size: cover;
+}
+.completed {
+    background: url(./img/completed.svg);
+    background-size: cover;
+}
+.projectlogo {
+    background: url(./img/project.svg);
+    background-size: cover;
+}
+.projecteditnormal,.projectremove,.projecteditadd,
+.taskeditnormal,.taskremove,.taskeditadd {
+    border-style: none;
+}
+.projecteditnormal,.taskeditnormal {
+    background: url(./img/edit.svg);
+    background-size: cover;
+}
+.projecteditadd,.taskeditadd {
+    background: url(./img/add.svg);
+    background-size: cover;
+    width: 27px;
+    height: 27px;
+}
+.projectremove,.taskremove {
+    background: url(./img/delete.svg);
+    background-size: cover;
+}
+/* 600 e kadar section padding 10px 40px ondan sonra tablet modunda 40px 80px */
 @media only screen and (max-width: 600px) {
-    /* 600 e kadar section padding 10px 40px ondan sonra tablet modunda 40px 80px */
+    nav {
+        height: 10%;
+    }
+    aside {
+        width: 100%;
+        min-height: 30%;
+        padding: 10px 40px;
+    }
+    .schedule {
+        grid-template-columns: 1fr 5fr;
+    }
+    .project {
+        grid-template-columns: 2fr 7fr 1fr 1fr;
+        z-index: 1;
+    }
+    #projectform {
+        width: 80%;
+    }
+    section {
+        width: 100%;
+        min-height: 80%;
+        padding: 10px 40px;
+    }
+    #addtask {
+        font-size: 1rem;
+    }
+    .task {
+        grid-template-columns: 20px 10fr 3fr 30px 30px;
+        font-size: 1.5rem;
+    }
+    .task > input:first-of-type {
+        justify-self: left;
+    }
+    footer {
+        height: 5%;
+    }
 }
-@media only screen and (min-width:601px) and (max-width:900px) {
-
+@media only screen and (min-width:601px) and (max-width:800px) {
+    nav {
+        height: 10%;
+    }
+    aside {
+        width: 100%;
+        min-height: 30%;
+        padding: 20px 100px;
+    }
+    .schedule {
+        grid-template-columns: 1fr 5fr;
+    }
+    .project {
+        grid-template-columns: 2fr 7fr 1fr 1fr;
+        z-index: 1;
+    }
+    #projectform {
+        width: 80%;
+    }
+    section {
+        width: 100%;
+        min-height: 80%;
+        padding: 20px 100px;
+    }
+    #addtask {
+        font-size: 1.25rem;
+    }
+    .task {
+        grid-template-columns: 20px 10fr 3fr 30px 30px;
+        font-size: 1.5rem;
+    }
+    .task > input:first-of-type {
+        justify-self: left;
+    }
+    footer {
+        height: 5%;
+    }
 }
-@media only screen and (min-width: 901px) {
-
+@media only screen and (min-width: 801px) {
+    body {
+        display: grid;
+        grid-template-rows: 10% 1fr 5%;
+        grid-template-columns: clamp(300px,25%,420px) auto ;
+    }
+    nav {
+        grid-column: 1/3;
+    }
+    aside {
+        padding: 10px 20px;
+    }
+    .schedule {
+        grid-template-columns: 1fr 7fr;
+    }
+    #projectform {
+        width: 100%;
+    }
+    .project {
+        grid-template-columns: 2fr 12fr 1fr 1fr;
+        z-index: 1;
+    }
+    .projectedit {
+        width: 100%;
+    }
+    section {
+        padding: 10px 40px;
+    }
+    .dateedit {
+        width: 140px;
+    }
+    #addtask {
+        font-size: 1.5rem;
+    }
+    .task {
+        grid-template-columns: 40px 10fr 150px 30px 30px;
+        height: 40px;
+        font-size: 2rem;
+    }
+    .task > input:first-child {
+        height: 20px;
+        width: 20px;
+    }
+    footer {
+        grid-column: 1/3;
+    }
 }

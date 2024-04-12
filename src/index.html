@@ -9,14 +9,15 @@
     <nav>TO DO LIST</nav>
     <aside>
         <div id="time-lists">
-            bugün
-            <div class="schedule"><span>logo</span><span>yarın</span><span>0</span></div>
-            <div class="schedule"><span>logo</span><span>bu hafta</span><span>0</span></div>
-            <div class="schedule"><span>logo</span><span>ileri tarih</span><span>0</span></div>
+            <div class="schedule" id="today"><span class="logo today"></span><span>Today</span></div>
+            <div class="schedule" id="tomorrow"><span class="logo tomorrow"></span><span>Tomorrow</span></div>
+            <div class="schedule" id="thisweek"><span class="logo thisweek"></span><span>This Week</span></div>
+            <div class="schedule" id="upcoming"><span class="logo upcoming"></span><span>Upcoming</span></div>
+            <div class="schedule" id="completedtasks"><span class="logo completed"></span><span>Completed Tasks</span></div>
         </div>
         <form id="projectform">
-            <input type="text" id="projectname" required>
-            <button id="addproject"><span>Create Project </span><span>+</span></button>
+            <input type="text" id="projectname" placeholder="New Project" required>
+            <button id="addproject"><span>CREATE</span></button>
         </form>
         <div id="projects">
         </div>

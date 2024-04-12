@@ -28,11 +28,11 @@ class TaskElement {
         const projectDataString = localStorage.getItem(`${this.parent}`);
         const projectData = JSON.parse(projectDataString);
         const item = projectData.find((element) => element.name == this.name);
-        
+
         checkBox.checked = item['checked'];
         checkBox.addEventListener('click',()=>{
             this.checked = !this.checked;
-
+                
             item['checked'] = this.checked;
             const updatedProjectDataString = JSON.stringify(projectData);
             localStorage.setItem(`${this.parent}`,updatedProjectDataString);
@@ -51,7 +51,7 @@ class TaskElement {
     }
     edit() {
         const edit = document.createElement('button');
-        edit.innerHTML = '|';
+        edit.classList = 'logo taskeditnormal';
 
         let isEditing = false;
 
@@ -98,13 +98,13 @@ class TaskElement {
                 this.taskelement.replaceChild(taskinput,this.nameelement);
                 isEditing = true;
             }
-            edit.innerHTML = isEditing ? '+' : '|';
+            edit.classList = isEditing ? 'logo taskeditadd' : 'logo taskeditnormal';
         })
         return edit;
     }
     remove() {
         const remove = document.createElement('button');
-        remove.innerHTML = 'x';
+        remove.classList = 'logo taskremove'
         remove.addEventListener('click',() => {
             const tasks = document.getElementById('tasks');
             tasks.removeChild(this.taskelement);
