@@ -101,9 +101,8 @@ header {
     justify-self: right;
     align-self: self-end;
 }
-section > div > form {
+#taskform {
     display:grid;
-    grid-template-columns: 8fr 98px 1fr;
     align-items: center;
     gap: 10px;
     height: 40px;
@@ -231,8 +230,11 @@ footer {
         min-height: 80%;
         padding: 10px 40px;
     }
+    #taskform {
+        grid-template-columns: 8fr 110px 50px;
+    }
     #addtask {
-        font-size: 1rem;
+        font-size: 1.25rem;
     }
     .task {
         grid-template-columns: 20px 10fr 3fr 30px 30px;
@@ -268,6 +270,9 @@ footer {
         width: 100%;
         min-height: 80%;
         padding: 20px 100px;
+    }
+    #taskform {
+        grid-template-columns: 8fr 110px 50px;
     }
     #addtask {
         font-size: 1.25rem;
@@ -310,6 +315,9 @@ footer {
     }
     section {
         padding: 10px 40px;
+    }
+    #taskform {
+        grid-template-columns: 1fr 110px 60px;
     }
     .dateedit {
         width: 140px;
